@@ -1,0 +1,52 @@
+{
+    "lists": [
+        {
+            "num": "1",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "2",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "3",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "4",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "5",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "6",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "7",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        },
+        {
+            "num": "8",
+            "img": "../../dist/img/test.jpg",
+            "name": "梦幻西游",
+            "money": "2384"
+        }
+    ]
+}

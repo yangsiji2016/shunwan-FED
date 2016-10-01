@@ -1,0 +1,45 @@
+{
+    "lists": [
+        {
+            "month": "8.22",
+            "week": "周一",
+            "goldNum": "+8",
+            "signData":"1"
+        },
+        {
+            "month": "8.23",
+            "week": "周二",
+            "goldNum": "+9",
+            "signData":"3"
+        },
+        {
+            "month": "8.24",
+            "week": "周三",
+            "goldNum": "+8",
+            "signData":"1"
+        },
+        {
+            "month": "8.25",
+            "week": "周四",
+            "goldNum": "+8",
+            "signData":"1"
+        },
+        {
+            "month": "8.26",
+            "week": "周五",
+            "goldNum": "+8",
+            "signData":"0"
+        },
+        {
+            "month": "8.27",
+            "week": "周六",
+            "goldNum": "+8",
+            "signData":"1"
+        },
+        {
+            "month": "8.28",
+            "week": "周日",
+            "signData":"3"
+        }
+    ]
+}

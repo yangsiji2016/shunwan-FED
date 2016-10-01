@@ -1,0 +1,16 @@
+/.idea
+/v1/h5/node_modules
+/v1/h5/src
+/v1/h5/.idea
+/v1/h5/gulpfile.js
+/v1/h5/package.json
+/v1/h5/页面调试地址.txt
+/v1/sdk/.idea
+/v1/sdk/node_modules
+/v1/sdk/package.json
+/v1/sdk/gulpfile.js
+/v1/sdk/SDK页面调试地址.txt
+/v1/sdk/src
+/v1/sdk/js调用java.txt
+/v1/sdk/SDK-php调试地址.md
+/v1/h5/H5-php调试地址.md

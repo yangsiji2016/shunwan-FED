@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>SDK设置</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+//         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                if (!clientWidth) return;
+                docEl.style.fontSize = clientWidth / 6.4 + 'px';
+            };
+            recalc();
+//            if (!doc.addEventListener) return;
+//            win.addEventListener(resizeEvt, recalc, false);
+//            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+
+    </script>
+</head>
+<body class="landscape">
+<!--账户信息-->
+<header class="account">
+    <div class="gravatar">
+        <img src="img/default-gravatra.png" alt="">
+    </div>
+    <div class="account-info">
+        <h2>飞行的小兜</h2>
+        <p>平台币余额：<span>1750</span></p>
+    </div>
+    <a class="app-link" href="javascript:openShunwan();">打开顺玩</a>
+</header>
+
+<div class="wrap">
+    <!--礼包列表-->
+    <div class="gift-list clearfix">
+        <ul>
+            <li>
+                <a href="sdk-gift.html">
+                    <img src="img/gift.png" alt="">
+                    <p>礼包</p>
+                </a>
+            </li>
+            <li>
+                <a href="sdk-coupons.html">
+                    <img src="img/coupons.png" alt="">
+                    <p>卡券</p>
+                </a>
+            </li>
+            <li></li>
+            <li></li>
+            <li style="display: none" class="hide"></li>
+            <li style="display: none" class="hide"></li>
+        </ul>
+    </div>
+
+    <!--登录选项-->
+    <div class="login-select">
+        <p class="p1">自动登录</p>
+        <p class="p2">(开启后，便将使用最近登录的账号自动进入）</p>
+        <p class="p3">游戏下载地址</p>
+        <a href="#" id="copy">http://www.shunwan.com/djadjann1</a>
+        <div class="copy">复制</div>
+    </div>
+
+    <!--订单说明-->
+    <p class="order-info">注：游戏订单可在顺玩游戏APP中查看</p>
+</div>
+
+<script src="http://static.shunwan.cn/sdk/js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="http://static.shunwan.cn/sdk/js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="http://static.shunwan.cn/sdk/js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+
+<!--登录选项切换-->
+<script>
+    Zepto(function ($) {
+        if (window.sdk.login_status()) {
+            $('.login-select .p1').addClass('checked')
+        } else {
+            $('.login-select .p1').removeClass('checked')
+        }
+
+        $('.login-select .p1').click(function () {
+            $(this).toggleClass('checked');
+            if ($(this).hasClass('checked')) {
+                window.sdk.auto_login(true)
+            } else {
+                window.sdk.auto_login(false)
+            }
+        });
+    })
+</script>
+
+<!--android横竖屏判断-->
+<script>
+    var _orientation = 1;
+    Zepto(function ($) {
+        checkOrient = function () {
+            var bodyClassName = _orientation == 0 ? 'portrait': 'landscape';
+            $('body').attr('class', bodyClassName);
+        }
+        checkOrient();
+
+        if (_orientation == 0) {
+            $('.hide').show();
+        }
+    })
+</script>
+
+<!--复制模块-->
+<script>
+    Zepto(function ($) {
+        $('.copy').click(function () {
+            var copyVal = $(this).parent().find('a#copy').html();
+            var copyPopup = '此游戏的下载链接已复制到手机的剪切板里,点击粘贴,便可以发送。';
+            window.sdk.copy(copyVal, copyPopup);
+        })
+    })
+</script>
+
+<!--打开顺玩模块-->
+<script>
+    function openShunwan() {
+        window.sdk.openshunwan('com.shunwanyouxi', 'http://www.baidu.com');
+    }
+</script>
+
+</body>
+</html>

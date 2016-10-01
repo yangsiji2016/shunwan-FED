@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>邀请好友</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #fff;
+            padding-bottom: .5rem;
+            padding-top: .5rem;
+        }
+    </style>
+</head>
+<body>
+<!--邀请好友说明文字..-->
+<div class="invite-text">
+    <p>成功邀请一个好友下载XX软件获得金币：<span class="s1">10个</span>；好友在本平台充值返利您：<span class="s1">10%</span>；普通会员收益受到限制，最高可得好友金币：<span class="s1">10个</span>；<span class="s2">会长所获得的好 友将不再受到限制。</span>成为会长：1.邀请的好友 达到：<span class="s1">100人</span>；2.好友充值金额达到：<span class="s1">1500元</span>。</p>
+</div>
+
+<!--邀请攻略链接-->
+<div class="strategy-link"><a href="invite-strategy.html">邀请攻略</a></div>
+
+<!--分享列表-->
+<div class="share-list">
+    <div class="share-list-top">
+        <div class="hr"></div>
+        <p>分享到</p>
+        <div class="hr"></div>
+    </div>
+    <ul>
+        <li id="qq-zone">
+            <a href="javascript:">
+                <img src="img/icon/qq-zone.png  " alt="">
+                <p>QQ空间</p>
+            </a>
+        </li>
+        <li id="qq-firend">
+            <a href="javascript:">
+                <img src="img/icon/qq-friend.png  " alt="">
+                <p>QQ好友</p>
+            </a>
+        </li>
+        <li id="sina-weibo">
+            <a href="javascript:">
+                <img src="img/icon/weibo.png  " alt="">
+                <p>新浪微博</p>
+            </a>
+        </li>
+        <li id="we-chat">
+            <a href="javascript:">
+                <img src="img/icon/weixin.png  " alt="">
+                <p>微信好友</p>
+            </a>
+        </li>
+        <li id="we-circle">
+            <a href="javascript:">
+                <img src="img/icon/pengyouquan.png  " alt="">
+                <p>朋友圈</p>
+            </a>
+        </li>
+        <li id="copy">
+            <a href="javascript:">
+                <img src="img/icon/copy.png  " alt="">
+                <p>复制链接</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!--二维码邀请-->
+<div class="qr-invite">
+    <div class="qr-invite-top">
+        <div class="hr"></div>
+        <p>面对面邀请</p>
+        <div class="hr"></div>
+    </div>
+    <img src="img/icon/qr.png" alt="">
+</div>
+
+
+
+
+
+
+
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+
+<!--分享&复制模块-->
+<script>
+    Zepto(function ($) {
+        // QQ空间
+        $('#qq-zone').click(function () {
+            window.androidjs.onQQZoneClick('111', '222', '333', '4441');
+        });
+
+        // QQ好友
+        $('#qq-firend').click(function () {
+            window.androidjs.onQQFriendsClick('111', '222', '333', '4442');
+        });
+
+        // 新浪微博
+        $('#sina-weibo').click(function () {
+            window.androidjs.onSinaClick('111', '222', '333', '4443');
+        });
+
+        // 微信好友
+        $('#we-chat').click(function () {
+            window.androidjs.onWeChatClick('111', '222', '333', '4444');
+        });
+
+        // 朋友圈
+        $('#we-circle').click(function () {
+            window.androidjs.onWeCircleClick('111', '222', '333', '4445');
+        });
+
+        // 复制链接
+        $('#copy').click(function () {
+            window.androidjs.onCopyClick('http://www.baidu.com');
+        });
+    })
+</script>
+
+
+</body>
+</html>

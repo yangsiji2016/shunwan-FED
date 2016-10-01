@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>用户签到</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <script src="js/zepto.js"></script>
+    <!--消除点击延迟的JS库-->
+    <script src="js/fastclick.js"></script>
+    <script src="js/touch.js"></script>
+    <!--初始化fastclick库-->
+    <script>
+        Zepto(function ($) {
+            FastClick.attach(document.body);
+        })
+    </script>
+    <style>
+        body{
+            background-color: #EFEFF4;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<!--头部logo-->
+<div class="top-logo"></div>
+
+<!--签到说明-->
+<div class="sign-info">
+    <h2>签到记录</h2>
+    <p>您已签到<span id="sign-span1">20</span>天，本周连续签到<span id="sign-span2">2</span>天</p>
+    <p>距离下次领取红包和领取奖励还剩<span id="sign-span3">2</span>天</p>
+</div>
+
+
+<div class="sign-box">
+    <!--签到列表-->
+    <ul id="sign-list" class="clearfix"></ul>
+
+    <!--签到按钮-->
+    <div class="sign-btn can-click">签到</div>
+</div>
+
+<!--分隔线-->
+<div class="hr20"></div>
+
+<!--签到礼包-->
+<div class="sign-gift clearfix">
+    <p class="p1">签到大礼包</p>
+    <p class="p2">连续签到满一周可点领取</p>
+    <div class="fr" id="receive">待领取</div>
+</div>
+
+<!--分隔线-->
+<div class="hr1"></div>
+
+<!--签到规则-->
+<div class="sign-rule">
+    <h2>签到规则</h2>
+    <p>1、当日签到每个账号当天只能签到一次；当日签到时间截止到次日0：00；每日签到成功后可得N个金币。</p>
+    <P class="p2">2、连续一周签到，每周日可领取大奖；以周为单位，连续签到账号，周日即可领取大奖。</P>
+</div>
+
+
+<!--签到弹窗-->
+<div class="popup-bg hide">
+    <div class="popup-sign-wrap">
+        <div class="popup-sign">
+            <div class="popup-title">
+                <div class="hr"></div>
+                <p>本周连续签到<span id="sign-days">2</span>天</p>
+                <div class="hr"></div>
+            </div>
+            <div class="gold-box">
+                <p>恭喜你，签到成功</p>
+                <p>获得<span id="gold-box-num">+1</span>金币</p>
+            </div>
+        </div>
+        <div class="popup-sign-footer">知道咯</div>
+    </div>
+</div>
+
+
+
+
+<!--领取礼包弹窗-->
+<!--弹窗1-->
+<div class="popup-bg1 hide">
+    <div class="gift-popup-wrap1">
+        <div class="gift-popup">
+            <div class="popup-title">
+                <div class="hr"></div>
+                <p>本周连续签到7天</p>
+                <div class="hr"></div>
+            </div>
+            <div class="coupons-list">
+                <ul>
+                    <li>
+                        <div class="left-num fl">
+                            <p>+8<span>金币</span></p>
+                        </div>
+                        <div class="right-info fl">
+                            <p class="p1">金币大礼包</p>
+                            <p class="p2">金币商城正在开发</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="popup-text">
+                <h2>恭喜，获得超多金币</h2>
+                <p>获得一个+8金币的礼包，金币可购买豪华礼包和首充卡。</p>
+            </div>
+            <div class="receive-btn">确&nbsp;&nbsp;认</div>
+        </div>
+    </div>
+</div>
+
+
+<!--弹窗2-->
+<div class="popup-bg2 hide">
+    <div class="gift-popup-wrap2">
+        <div class="gift-popup">
+            <div class="popup-title">
+                <div class="hr"></div>
+                <p>本周连续签到7天</p>
+                <div class="hr"></div>
+            </div>
+            <div class="coupons-list">
+                <ul>
+                    <li>
+                        <div class="popup2-text">
+                            <p class="p1">《天子传奇》建党礼包</p>
+                            <p class="p2">刷新卷轴*3、免战牌*1、刷新金牌</p>
+                            <p class="p3">使用期限至：2016-09-30</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="popup-text">
+                <h2>恭喜，获得豪华礼包</h2>
+                <p>获得一份价值10金币的梦幻西游礼包，可抵用4.5元哦！</p>
+            </div>
+            <div class="receive-btn">确&nbsp;&nbsp;认</div>
+        </div>
+    </div>
+</div>
+
+
+<!--弹窗3-->
+<div class="popup-bg3 hide">
+    <div class="gift-popup-wrap3">
+        <div class="gift-popup">
+            <div class="popup-title">
+                <div class="hr"></div>
+                <p>本周连续签到7天</p>
+                <div class="hr"></div>
+            </div>
+            <div class="coupons-list">
+                <ul>
+                    <li>
+                        <div class="left-num fl">
+                            <p><span>￥</span>4.5</p>
+                        </div>
+                        <div class="right-info fl">
+                            <p class="p1">豪华首冲卡</p>
+                            <p class="p2">适用于：梦幻西游</p>
+                            <p class="p3">使用截止至：2016-09-30</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="popup-text">
+                <h2>恭喜，获得豪华首充</h2>
+                <p>获得一份价值10金币的梦幻西游首充卡，可抵用4.5元哦！</p>
+            </div>
+            <div class="receive-btn">确&nbsp;&nbsp;认</div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //ajax获取数据
+    Zepto(function ($) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://ac-OnsG2j7w.clouddn.com/1e1d859bcd17eeee.json',
+            dataType: 'json',
+            success: function (data) {
+                var result = '';
+                for(var i = 0; i < data.lists.length; i++) {
+                    if (data.lists[i].signData == 1) {
+                        result +=   '<li class="sign-true" data-sign="1">'
+                                +'<p class="p1">'+data.lists[i].month+'</p>'
+                                +'<p>'+data.lists[i].week+'</p>'
+                                +'</li>'
+                    } else if (data.lists[i].signData == 0) {
+                        result +=   '<li class="sign-false">'
+                                +'<p class="p1">'+data.lists[i].month+'</p>'
+                                +'<p>'+data.lists[i].week+'</p>'
+                                +'</li>'
+                    } else {
+                        result +=   '<li>'
+                                +'<p class="p1">'+data.lists[i].month+'</p>'
+                                +'<p>'+data.lists[i].week+'</p>'
+                                +'<p class="gold-num">'+data.lists[i].goldNum+'</p>'
+                                +'</li>'
+                    }
+                }
+                $('#sign-list').html(result);
+                $('#sign-list > li').eq(-1).addClass('add-gift').children('.gold-num').remove();
+                receiveGift();
+            }
+        });
+
+        //签到按钮点击事件&弹窗
+        $('.sign-btn').one('click', function () {
+            if (!$(this).hasClass('no-click')) {
+                var myDate = new Date();
+                week = myDate.getDay() == 0 ? 7 : myDate.getDay();
+                goldNumHtml = $('#sign-list > li').eq(week-1).children('.gold-num').html();
+
+                $(this).html('已签到').addClass('no-click');
+                $('#sign-list > li').eq(week-1).addClass('active').attr('data-sign', 1);
+                $('#gold-box-num').html(goldNumHtml)
+                $('.popup-bg').show();
+                var popupHeight = ($(window).height() - $('.popup-sign-wrap').height())/2 + 'px';
+                $('.popup-sign-wrap').css('top', popupHeight);
+            }
+
+            $('.popup-sign-footer').click(function () {
+                $('.popup-bg').hide();
+            });
+            receiveGift();
+        });
+
+        //领取礼包事件
+        function receiveGift() {
+            var num = $('li[data-sign="1"]').length;
+            console.log(num);
+            if (num == 5) {
+                $('.sign-gift > div').html('领取').addClass('receive-active');
+                $('.sign-gift > div').one('click', function () {
+                    $('.popup-bg2').show();
+                    var popupHeight = ($(window).height() - $('.gift-popup-wrap2').height())/2;
+                    $('.gift-popup-wrap2').css('top', popupHeight);
+                    $(this).html('已领取').removeClass('receive-active')
+                })
+                $('.receive-btn').click(function () {
+                    $('.popup-bg2').hide();
+                })
+            }
+        }
+    });
+</script>
+</body>
+</html>

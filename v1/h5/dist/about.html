@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>关于我们</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #EFEFF4;
+        }
+    </style>
+</head>
+<body>
+<!--头部logo-->
+<header class="about-top">
+    <p class="p1">顺玩游戏</p>
+    <p class="p2">当前版本1.0.0</p>
+</header>
+
+<!--详细内容-->
+<article class="content">顺玩游戏APP是由生活范网络科技有限公司于2016年创立。顺玩游戏是专业的手机游戏下载及手游充值返利平台，专注于为手机游戏玩家提供最新、最好、最省钱的精品手游推荐。游戏小编精挑细选，挖掘高品质手机游戏，打造高质量的游戏下载推荐平台，同时为玩家提供各类豪华礼包、高金额首充卡和优惠券等福利。玩家可以用最省钱的方式，享受最高质量的游戏，想玩就玩，一切无忧。找手游、找福利就上顺玩游戏！</article>
+
+<!--用户协议链接-->
+<div class="user-agreement-link">
+    <a href="user-agreement.html">用户使用协议</a>
+    <p class="p1">Copyright© 2016 shenghuofan.com</p>
+    <p>武汉生活范网络科技有限公司</p>
+</div>
+</body>
+</html>

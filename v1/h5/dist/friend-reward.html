@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>好友充值奖励</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <style>
+        body{
+            background-color: #fff;
+            padding-bottom: .9rem;
+            padding-top: .28rem;
+        }
+    </style>
+</head>
+<body>
+<!--充值奖励列表-->
+<div class="reward">
+    <table>
+        <tr>
+            <td>时间</td>
+            <td>游戏</td>
+            <td>充值</td>
+            <td>返利</td>
+        </tr>
+        <tr>
+            <td>07-14 12:00</td>
+            <td>梦幻西游</td>
+            <td>822</td>
+            <td>+100</td>
+        </tr>
+        <tr>
+            <td>07-14 12:00</td>
+            <td>梦幻西游</td>
+            <td>822</td>
+            <td>+100</td>
+        </tr>
+        <tr>
+            <td>07-14 12:00</td>
+            <td>梦幻西游</td>
+            <td>822</td>
+            <td>+100</td>
+        </tr>
+        <tr>
+            <td>07-14 12:00</td>
+            <td>梦幻西游</td>
+            <td>822</td>
+            <td>+100</td>
+        </tr>
+        <tr>
+            <td>07-14 12:00</td>
+            <td>梦幻西游</td>
+            <td>822</td>
+            <td>+100</td>
+        </tr>
+    </table>
+</div>
+
+
+<!--JS插件部分-->
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<link rel="stylesheet" href="css/dropload.css">
+<script src="js/dropload.min.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+<!--js插件部分结束-->
+
+
+
+
+<!--充值奖励列表ajax请求-->
+<script>
+    $.ajax({
+        type: 'GET',
+        url: 'json/update.json',
+        dataType: 'json',
+        cache: 'false',
+        success: function (data) {
+            console.log(data.lists.length);
+            if (data.lists.length > 0) {
+                var result = '';
+                for (var i = 0; i < data.lists.length; i++) {
+                    result += '<tr>'
+                            + '<td>' + data.lists[i].time + '</td>'
+                            + '<td>' + data.lists[i].friend + '</td>'
+                            + '<td>' + data.lists[i].type + '</td>'
+                            + '<td>' + data.lists[i].money + '</td>'
+                            + '</tr>';
+                }
+                //载入数据覆盖
+                $('.reward > table').html(result);
+            } else {
+                var clearText = '';
+                $('.reward').html(clearText);
+            }
+        }
+    })
+</script>
+
+
+
+<!--下拉刷新&上拉加载-->
+<script>
+    Zepto(function ($) {
+        var counter = 0;
+        // 每页展示4个
+        var num = 4;
+        var pageStart = 0,pageEnd = 0;
+
+        // dropload
+        $('.reward').dropload({
+            scrollArea : window,
+            domUp : {
+                domClass   : 'dropload-up',
+                domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+                domUpdate  : '<div class="dropload-update">释放更新</div>',
+                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+            },
+            domDown : {
+                domClass   : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                domNoData  : '<div class="dropload-noData">我是有底线的</div>'
+            },
+            /*loadUpFn : function(me){
+                $.ajax({
+                    type: 'GET',
+                    url: 'json/update.json',
+                    dataType: 'json',
+                    success: function(data){
+                        var result = '';
+                        for(var i = 0; i < data.lists.length; i++){
+                            result +=   '<tr>'
+                                    +'<td>'+data.lists[i].time+'</td>'
+                                    +'<td>'+data.lists[i].friend+'</td>'
+                                    +'<td>'+data.lists[i].type+'</td>'
+                                    +'<td>'+data.lists[i].money+'</td>'
+                                    +'</tr>';
+                        }
+                        //载入数据覆盖
+                        $('.reward > table').html(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            },*/
+            loadDownFn : function(me){
+                $.ajax({
+                    type: 'GET',
+                    url: 'json/more.json',
+                    dataType: 'json',
+                    success: function(data){
+                        var result = '';
+                        counter++;
+                        pageEnd = num * counter;
+                        pageStart = pageEnd - num;
+
+                        for(var i = pageStart; i < pageEnd; i++){
+                            result +=   '<tr>'
+                                    +'<td>'+data.lists[i].time+'</td>'
+                                    +'<td>'+data.lists[i].friend+'</td>'
+                                    +'<td>'+data.lists[i].type+'</td>'
+                                    +'<td>'+data.lists[i].money+'</td>'
+                                    +'</tr>';
+                            if((i + 1) >= data.lists.length){
+                                // 锁定
+                                me.lock();
+                                // 无数据
+                                me.noData();
+                                break;
+                            }
+                        }
+                        //载入数据添加到后面
+                        $('.reward > table').append(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            },
+            threshold : 50
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

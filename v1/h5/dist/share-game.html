@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>游戏分享</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            padding-bottom: .6rem;
+            background-color: #091a35;
+        }
+    </style>
+</head>
+<body>
+<!--头部背景图片-->
+<div class="bg-img"></div>
+
+<!--好友分享信息-->
+<div class="friend-info">
+    <p>你的好友<span>小艾（186****4554）</span>在顺玩游戏APP 中邀请你一起来玩<span>《宝石消消乐》</span>游戏，注册 顺玩可领取<span>5.99元</span>首充卡,赶快打开顺玩下载游戏吧。</p>
+</div>
+
+<!--游戏logo-->
+<div class="game-logo">
+    <img src="img/game-logo-01.png" alt="">
+    <p>梦幻西游</p>
+</div>
+
+<!--打开游戏app-->
+<div class="app-open">
+    <a href="javascript:appDownload();">打开顺玩APP下载游戏</a>  <!--此处链接打开本地app(已安装)，否则打开下载页面-->
+</div>
+
+
+<!--js插件-->
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+<!--js插件结束-->
+
+
+<!--app本地启动或者下载-->
+<script>
+    function appDownload() {
+
+        var fallbackLink = 'http://www.baidu.com/', //如果本地打不开app跳转到下载页面
+                isiOS = navigator.userAgent.match('iPad') || navigator.userAgent.match('iPhone') || navigator.userAgent.match('iPod'),
+                isAndroid = navigator.userAgent.match('Android'),
+                loader = document.createElement('iframe'); // 创建一个框架
+
+        loader.height = 0;
+        loader.width = 0;
+        document.body.appendChild(loader); // 将框架添加到页面中
+
+
+        setTimeout(function () {
+            window.location.href = fallbackLink;
+            loader.remove();
+        }, 2000); // 设置定时器，如果2秒内应用没打开，则跳转到下载页面
+
+        if (isiOS || isAndroid) {
+//            fallbackLink = 'http://www.baidu.com';
+            if (isiOS) {
+                loader.src = 'deyipost://';
+            }
+            else {
+                loader.src = 'fyfeng://helloandroid'; //Android端URL Schema
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>用户注册</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            padding-bottom: .6rem;
+            background-color: #091a35;
+        }
+    </style>
+</head>
+<body>
+<!--头部背景图片-->
+<div class="bg-img"></div>
+
+<!--注册介绍-->
+<div class="register-info">
+    <p>注册即可获得</p>
+    <p>注册成功后<span>5.8</span>元红包会自动存到您的顺玩APP账户里</p>
+</div>
+
+<!--注册表单-->
+<form class="register-module">
+    <input type="text" placeholder="输入手机号" id="phone" name="phone" class="input1" maxlength="11" oninput="checkMobile();" ><br>
+    <input type="text" placeholder="输入验证码" name="verification-code" class="input2" oninput="styleChange();"><input type="button" value="获取验证码" class="input3" id="get-verification-code"><br>
+    <input type="submit" value="立即领取" class="input4" disabled="disabled">
+</form>
+
+
+
+
+
+
+<!--js插件-->
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+<!--js插件结束-->
+
+
+
+<!--手机注册模块-->
+<script>
+    // 手机号输入与验证
+    function checkMobile() {
+        //手机号码
+        var mobile = $('#phone').val();
+
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if ( $('#phone').val().length == 11 ) {
+            if (!myreg.test(mobile)) {
+                alert('请输入有效的手机号码');
+                $('#phone').val('');
+                return false;
+            } else {
+                $('#get-verification-code').addClass("active");
+            }
+        } else {
+            $('#get-verification-code').removeClass("active");
+        }
+    }
+
+    // 立即领取按钮样式切换
+    function styleChange() {
+        if ($('.input2').val().length !== 0) {
+            $('.input4').addClass('active');
+            $('.input4').attr('disabled',null)
+            return false;
+        } else {
+            $('.input4').removeClass('active');
+        }
+    }
+
+    // 获取验证码按钮样式切换&倒计时
+    var getCode = $('#get-verification-code');
+        countdown = 10;
+    getCode.click(function () {
+        settime();
+        function settime() {
+            if (countdown == 0) {
+                getCode.addClass('active');
+                getCode.attr({
+                    disabled:null,
+                    value:'获取验证码'
+                });
+                countdown = 10;
+                return;
+            } else {
+                getCode.attr({
+                    disabled:'disabled',
+                    value:countdown + '秒'
+                })
+                getCode.removeClass('active');
+                countdown--;
+            }
+
+            setTimeout(function() {
+                settime()
+            },1000)
+        }
+    });
+</script>
+</body>
+</html>

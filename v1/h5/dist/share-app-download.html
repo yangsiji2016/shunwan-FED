@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>领取红包下载app</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            padding-bottom: .6rem;
+            background-color: #091a35;
+        }
+    </style>
+</head>
+<body>
+<!--头部背景图片-->
+<div class="bg-img"></div>
+
+<!--祝贺文字-->
+<div class="congratulate-text">
+    <span>恭喜!</span>
+    <span>恭喜!</span>
+    <p>获得<span>5.8元</span>红包</p>
+</div>
+
+<!--app的logo-->
+<div class="app-logo-box">
+    <img src="img/app-logo.png" alt="app-logo">
+    <p class="p1">顺玩</p>
+    <p class="p2">您的省钱专家</p>
+</div>
+
+<!--app下载链接-->
+<div class="download-link">
+    <a href="javascript:appDownload();">下载顺玩APP立即使用</a>  <!--此处链接为官方下载页面-->
+</div>
+
+<!--js插件-->
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+<!--js插件结束-->
+
+<!--app本地启动或者下载-->
+<script>
+    function appDownload() {
+
+        var fallbackLink = 'http://www.baidu.com/', //如果本地打不开app跳转到下载页面
+        isiOS = navigator.userAgent.match('iPad') || navigator.userAgent.match('iPhone') || navigator.userAgent.match('iPod'),
+        isAndroid = navigator.userAgent.match('Android'),
+        loader = document.createElement('iframe'); // 创建一个框架
+
+        loader.height = 0;
+        loader.width = 0;
+        document.body.appendChild(loader); // 将框架添加到页面中
+
+        setTimeout(function () {
+            window.location.href = fallbackLink;
+            loader.remove();
+        }, 2000); // 设置定时器，如果2秒内应用没打开，则跳转到下载页面
+
+        if (isiOS || isAndroid) {
+//            fallbackLink = 'http://www.baidu.com';
+            if (isiOS) {
+                loader.src = 'deyipost://';
+            }
+            else {
+                loader.src = 'fyfeng://helloandroid'; //Android端URL Schema
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

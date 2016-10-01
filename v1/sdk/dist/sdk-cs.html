@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>SDK客服</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #EFEFF4;
+        }
+    </style>
+</head>
+<body>
+<!--<iframe id="mainframe" name="mainframe" marginwidth="0" marginheight="0" src="https://shunwan.qiyukf.com/client?k=c5f57e06dd19b49a2a4f84e1bf12d884&wp=1"
+        frameborder="0" scrolling="no" onload="changeFrameHeight()" width="100%"></iframe>-->
+
+<div class="custom-service">
+    <ul>
+        <li>
+            <p>联系方式：<span class="copy-num">027-5191152</span></p>
+            <div class="copy-btn">复制</div>
+        </li>
+        <li>
+            <p>客服QQ1：<span class="copy-num">QQ:6751144214</span></p>
+            <div class="copy-btn">复制</div>
+        </li>
+        <li>
+            <p>客服QQ2：<span class="copy-num">QQ:6751144214</span></p>
+            <div class="copy-btn">复制</div>
+        </li>
+        <li>
+            <p>客服QQ3：<span class="copy-num">QQ:6751144214</span></p>
+            <div class="copy-btn">复制</div>
+        </li>
+    </ul>
+</div>
+
+<script src="http://static.shunwan.cn/sdk/js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="http://static.shunwan.cn/sdk/js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="http://static.shunwan.cn/sdk/js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+
+<!--iframe宽高自适应-->
+<!--<script>
+    function changeFrameHeight(){
+        var ifm= document.getElementById("mainframe");
+        ifm.height=document.documentElement.clientHeight;
+    }
+    window.onresize=function(){
+        changeFrameHeight();
+    }
+</script>-->
+
+<!--复制模块-->
+<script>
+    Zepto(function ($) {
+        $('.copy-btn').click(function () {
+            var copyVal = $(this).parent().find('.copy-num').html();
+            console.log(copyVal);
+            var copyPopup = '联系方式' + copyVal + '已复制到您的手机上';
+            window.sdk.copy(copyVal, copyPopup);
+        })
+    })
+</script>
+
+<!--距离设置-->
+<script>
+    Zepto(function ($) {
+        var _height = ($(window).height() - $('.custom-service').height())/2;
+        $('.custom-service').css('margin-top', _height);
+    })
+</script>
+</body>
+</html>

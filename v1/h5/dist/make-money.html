@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>赚钱规则</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!--顶部展示-->
+<div class="top-bar clearfix">
+    <a class="right-recharge fr" href="###"> <!--跳转到金币收益页-->
+        <h2>好友充值</h2>
+        <p class="p1">我的累计返利</p>
+        <p class="p2"><span id="rebate-num">13500</span>(平台币)</p>
+    </a>
+    <a class="left-invite fl" href="###"> <!--跳转到好友充值奖励页-->
+        <h2>邀请好友</h2>
+        <p class="p1">我的累计收益</p>
+        <p class="p2"><span id="gold-num">33600</span>(金币)</p>
+    </a>
+</div>
+
+<!--分隔线-->
+<div class="hr20"></div>
+
+<!--选项卡-->
+<div class="tab">
+    <ul>
+        <li class="active">活动规则</li>
+        <li>收益榜</li>
+        <li>好友榜</li>
+    </ul>
+</div>
+
+<!--分页内容wrap-->
+<div class="swiper-container">
+    <div class="tab-content swiper-wrapper">
+        <!--规则分页-->
+        <div class="rule swiper-slide fl">
+            <!--图片展示-->
+            <div class="img-box clearfix">
+                <div class="left-img fl">
+                    <p class="p1">114人</p>
+                    <p class="p2">该活动玩家邀请总数</p>
+                </div>
+                <div class="right-img fl">
+                    <p class="p1">1445RMB</p>
+                    <p class="p2">平台累计奖励现金数值</p>
+                </div>
+            </div>
+            <!--邀请好友福利-->
+            <div class="invite-welfare">
+                <div class="title">
+                    <p>邀请好友福利</p>
+                </div>
+                <table>
+                    <tr>
+                        <td class="radius-top-left">好友</td>
+                        <td class="radius-top-right">成功邀请一个好友获得金币：10个</td>
+                    </tr>
+                    <tr>
+                        <td>充值</td>
+                        <td>获得好友充值的：10%</td>
+                    </tr>
+                    <tr>
+                        <td>会员</td>
+                        <td>收益受到限制，最高可得好友 平台币：50个</td>
+                    </tr>
+                    <tr>
+                        <td class="radius-bottom-left">会长</td>
+                        <td class="radius-bottom-right">所获得的好友将不再受到限制</td>
+                    </tr>
+                </table>
+                <p class="p2">注：金币后期可兑换成平台币，金币商城正在开发中</p>
+            </div>
+            <!--如何成为会长-->
+            <div class="president-info">
+                <div class="title">
+                    <p>PS如何成为会长:</p>
+                </div>
+                <div class="president-info-details">
+                    <p>1、邀请的好友达到：100人；</p>
+                    <p>2、好友充值金额达到：1500元</p>
+                </div>
+            </div>
+            <!--活动说明-->
+            <div class="event-info">
+                <div class="title">
+                    <p>活动说明</p>
+                </div>
+                <ul>
+                    <li class="list-title">活动时间</li>
+                    <li>有效时间截止至2016-09-30</li>
+                    <li class="list-title">活动内容</li>
+                    <li>有效时间截止至2016-09-30</li>
+                    <li class="list-title">活动规则</li>
+                </ul>
+            </div>
+        </div>
+
+        <!--收益榜分页-->
+        <div class="income-list swiper-slide fl">
+            <ul>
+                <li>
+                    <span class="fl">1</span>
+                    <div class="img-wrap-box fl">
+                        <div class="crown-bg"></div>
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">2</span>
+                    <div class="img-wrap-box fl">
+                        <div class="crown-bg"></div>
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">3</span>
+                    <div class="img-wrap-box fl">
+                        <div class="crown-bg"></div>
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">4</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">5</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">6</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test2.gif">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">7</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test2.gif">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">8</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test2.gif">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">收益平台币</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--好友页-与收益榜页一样-->
+        <div class="friend-list swiper-slide fl">
+            <ul>
+                <li class="list-top3">
+                    <span class="fl">1</span>
+                    <div class="img-wrap-box fl">
+                        <div class="crown-bg"></div>
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li class="list-top3">
+                    <span class="fl">2</span>
+                    <div class="img-wrap-box fl">
+                        <div class="crown-bg"></div>
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li class="list-top3">
+                    <span class="fl">3</span>
+                    <div class="img-wrap-box fl">
+                        <div class="crown-bg"></div>
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">4</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">5</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">6</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">7</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="fl">8</span>
+                    <div class="img-wrap-box fl">
+                        <div class="img-wrap">
+                            <img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="../../dist/img/test.jpg">
+                        </div>
+                    </div>
+                    <p class="game-name fl">铠甲勇士大战</p>
+                    <div class="rebate-num-box fr">
+                        <p class="p1">2384</p>
+                        <p class="p2">好友数</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--js插件-->
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<!--数字滚动插件-->
+<script src="js/countUp.min.js"></script>
+<!--刷新加载插件-->
+<link rel="stylesheet" href="css/dropload.css">
+<script src="js/dropload.min.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+<!--zepto动画模块-->
+<script src="js/fx.js"></script>
+<!--图片懒加载模块-->
+<script src="js/imgLazyLoad.js"></script>
+<!--js插件结束-->
+
+
+<!--顶部金币展示刷新-->
+<script>
+    //数字滚动效果
+    function numRoll() {
+        var options = {
+            useEasing : true,
+            useGrouping : true,
+            separator : ',',
+            decimal : '.',
+            prefix : '',
+            suffix : ''
+        };
+        var goldNum = $('#gold-num').html();
+        var rebateNum = $('#rebate-num').html();
+        var roll = new CountUp("gold-num", 0, goldNum, 1, 3.5, options);
+        var roll2 = new CountUp("rebate-num", 0, rebateNum, 1, 3.5, options);
+        roll.start();
+        roll2.start();
+    }
+
+    //ajax获取数据
+    $.ajax({
+        type: 'GET',
+        url: 'json/num.json',
+        dataType: 'json',
+        success: function (data) {
+            var num1 = data.lists[0].num1;
+                num2 = data.lists[0].num2;
+                num3 = data.lists[0].num3;
+                num4 = data.lists[0].num4;
+            //载入数据覆盖
+            $('#gold-num').html(num1);
+            $('#rebate-num').html(num2);
+            numRoll();
+            $('.left-img .p1').html(num3);
+            $('.right-img .p1').html(num4);
+        }
+    })
+</script>
+
+<!--选项卡切换-->
+<script>
+Zepto(function ($) {
+
+        var a = $('.swiper-container').width();
+            i = 0
+        clone = $('.tab-content').children('div').first().clone();
+        $('.tab-content').append(clone);
+
+        // 屏幕旋转后重新加载页面，以获取新的宽度
+/*        $(window).resize(function () {
+            location.reload();
+        });*/
+
+        // 点击选项卡
+        $('.tab ul li').click(function () {
+            var tabNum = $(this).index();
+            var swiperContainerHeight = $('.swiper-slide').eq(tabNum).height();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('.tab-content').animate({left: -tabNum*a}, 200);
+            $('.swiper-container').height(swiperContainerHeight);
+        });
+
+        // 向左滑动
+        $('.tab-content > div').swipeLeft(function () {
+            var i = $(this).index();
+            var swiperContainerHeight = $('.swiper-slide').eq(i+1).height();
+            $('.swiper-container').height(swiperContainerHeight);
+            console.log(i)
+            if (i == 3) {
+                $('.tab-content').css({left : 0});
+                $('.tab-content').animate({left: -a}, 200);
+                var swiperContainerHeight = $('.swiper-slide').eq(1).height();
+                $('.swiper-container').height(swiperContainerHeight);
+            } else {
+                $('.tab-content').animate({left: -(i+1)*a}, 200);
+            }
+
+            if( i == 2) {
+                $('.tab ul li').eq(0).addClass('active').siblings().removeClass('active');
+            } else if (i == 3) {
+                $('.tab ul li').eq(1).addClass('active').siblings().removeClass('active');
+            } else {
+                $('.tab ul li').eq(i+1).addClass('active').siblings().removeClass('active');
+            }
+         });
+
+        // 向右滑动
+        $('.tab-content > div').swipeRight(function () {
+            var i = $(this).index();
+            var swiperContainerHeight = $('.swiper-slide').eq(i-1).height();
+            $('.swiper-container').height(swiperContainerHeight);
+            console.log(i)
+            $('.tab ul li').eq(i-1).addClass('active').siblings().removeClass('active');
+            if (i == 0) {
+                $('.tab-content').css({left : -3*a});
+                $('.tab-content').animate({left: -2*a}, 200);
+                var swiperContainerHeight = $('.swiper-slide').eq(2).height();
+                $('.swiper-container').height(swiperContainerHeight);
+            } else {
+                $('.tab-content').animate({left: -(i-1)*a}, 200);
+            }
+        });
+    })
+
+</script>
+
+<!--头像延迟加载-->
+<script>
+    $('.img-lazy').imgLazyLoad();
+</script>
+
+<!--下拉刷新&上拉加载-->
+<!--收益榜分页-->
+<script>
+Zepto(function ($) {
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,pageEnd = 0;
+
+    // dropload.
+
+
+    $('.income-list').dropload({
+        scrollArea : window,
+        domUp : {
+            domClass   : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+            domUpdate  : '<div class="dropload-update">释放更新</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+        },
+        domDown : {
+            domClass   : 'dropload-down',
+            domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+            domNoData  : '<div class="dropload-noData">没有更多了</div>'
+        },
+        /*loadUpFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'json/update3.json',
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    var result = '';
+                    for(var i = 0; i < data.lists.length; i++){
+                        if (i < 3) {
+                            result +=   '<li>'
+                                    +'<span class="fl">'+data.lists[i].num+'</span>'
+                                    +'<div class="img-wrap-box fl">'
+                                        +'<div class="crown-bg">'+'</div>'
+                                        +'<div class="img-wrap">'
+                                            +'<img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="'+data.lists[i].img+'">'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<p class="game-name fl">'+data.lists[i].name+'</p>'
+                                    +'<div class="rebate-num-box fr">'
+                                        +'<p class="p1">'+data.lists[i].money+'</p>'
+                                        +'<p class="p2">'+'收益平台币'+'</p>'
+                                    +'</div>'
+                                    +'</li>';
+                        } else {
+                            result +=   '<li>'
+                                    +'<span class="fl">'+data.lists[i].num+'</span>'
+                                    +'<div class="img-wrap-box fl">'
+                                        +'<div class="img-wrap">'
+                                            +'<img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="'+data.lists[i].img+'">'
+                                        +'</div>'
+                                    +'</div>'
+                                    +'<p class="game-name fl">'+data.lists[i].name+'</p>'
+                                    +'<div class="rebate-num-box fr">'
+                                        +'<p class="p1">'+data.lists[i].money+'</p>'
+                                        +'<p class="p2">'+'收益平台币'+'</p>'
+                                    +'</div>'
+                                    +'</li>';
+                        }
+                    }
+                    // 载入数据覆盖
+                    $('.income-list > ul').html(result);
+                    // 头像延迟加载
+                    $('.img-lazy').imgLazyLoad();
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },*/
+        loadDownFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'json/more3.json',
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    var result = '';
+                    counter++;
+                    pageEnd = num * counter;
+                    pageStart = pageEnd - num;
+
+                    for(var i = pageStart; i < pageEnd; i++){
+                        result +=   '<li>'
+                                +'<span class="fl">'+data.lists[i].num+'</span>'
+                                +'<div class="img-wrap-box fl">'
+                                    +'<div class="img-wrap">'
+                                        +'<img class="img-lazy" src="img/default-gravatra.png" alt="" data-original="'+data.lists[i].img+'">'
+                                    +'</div>'
+                                +'</div>'
+                                +'<p class="game-name fl">'+data.lists[i].name+'</p>'
+                                +'<div class="rebate-num-box fr">'
+                                    +'<p class="p1">'+data.lists[i].money+'</p>'
+                                    +'<p class="p2">'+'收益平台币'+'</p>'
+                                +'</div>'
+                                +'</li>';
+                        if((i + 1) >= data.lists.length){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
+                    }
+                    //载入数据添加到后面
+                    $('.income-list > ul').append(result);
+                    // 头像延迟加载
+                    $('.img-lazy').imgLazyLoad();
+
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },
+        threshold : 50
+    });
+});
+</script>
+<!--好友榜分页-->
+<script>
+Zepto(function ($) {
+        var counter = 0;
+        // 每页展示4个
+        var num = 4;
+        var pageStart = 0,pageEnd = 0;
+
+        // dropload
+        $('.friend-list').dropload({
+            scrollArea : window,
+            domUp : {
+                domClass   : 'dropload-up',
+                domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+                domUpdate  : '<div class="dropload-update">释放更新</div>',
+                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+            },
+            domDown : {
+                domClass   : 'dropload-down',
+                domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+                domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                domNoData  : '<div class="dropload-noData">没有更多了</div>'
+            },
+            /*loadUpFn : function(me){
+                $.ajax({
+                    type: 'GET',
+                    url: 'json/update4.json',
+                    dataType: 'json',
+                    cache: 'false',
+                    success: function(data){
+                        var result = '';
+                        for(var i = 0; i < data.lists.length; i++){
+                            if (i < 3) {
+                                result +=   '<li>'
+                                        +'<span class="fl">'+data.lists[i].num+'</span>'
+                                        +'<div class="img-wrap-box fl">'
+                                        +'<div class="crown-bg">'+'</div>'
+                                        +'<div class="img-wrap">'
+                                        +'<img src="'+data.lists[i].img+'" alt="">'
+                                        +'</div>'
+                                        +'</div>'
+                                        +'<p class="game-name fl">'+data.lists[i].name+'</p>'
+                                        +'<div class="rebate-num-box fr">'
+                                        +'<p class="p1">'+data.lists[i].friend+'</p>'
+                                        +'<p class="p2">'+'好友数'+'</p>'
+                                        +'</div>'
+                                        +'</li>';
+                            } else {
+                                result +=   '<li>'
+                                        +'<span class="fl">'+data.lists[i].num+'</span>'
+                                        +'<div class="img-wrap-box fl">'
+                                        +'<div class="img-wrap">'
+                                        +'<img src="'+data.lists[i].img+'" alt="">'
+                                        +'</div>'
+                                        +'</div>'
+                                        +'<p class="game-name fl">'+data.lists[i].name+'</p>'
+                                        +'<div class="rebate-num-box fr">'
+                                        +'<p class="p1">'+data.lists[i].friend+'</p>'
+                                        +'<p class="p2">'+'好友数'+'</p>'
+                                        +'</div>'
+                                        +'</li>';
+                            }
+                        }
+                        //载入数据覆盖
+                        $('.friend-list > ul').html(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            },*/
+            loadDownFn : function(me){
+                $.ajax({
+                    type: 'GET',
+                    url: 'json/more4.json',
+                    dataType: 'json',
+                    cache: 'false',
+                    success: function(data){
+                        var result = '';
+                        counter++;
+                        pageEnd = num * counter;
+                        pageStart = pageEnd - num;
+
+                        for(var i = pageStart; i < pageEnd; i++){
+                            result +=   '<li>'
+                                    +'<span class="fl">'+data.lists[i].num+'</span>'
+                                    +'<div class="img-wrap-box fl">'
+                                    +'<div class="img-wrap">'
+                                    +'<img src="'+data.lists[i].img+'" alt="">'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'<p class="game-name fl">'+data.lists[i].name+'</p>'
+                                    +'<div class="rebate-num-box fr">'
+                                    +'<p class="p1">'+data.lists[i].friend+'</p>'
+                                    +'<p class="p2">'+'好友数'+'</p>'
+                                    +'</div>'
+                                    +'</li>';
+                            if((i + 1) >= data.lists.length){
+                                // 锁定
+                                me.lock();
+                                // 无数据
+                                me.noData();
+                                break;
+                            }
+                        }
+                        //载入数据添加到后面
+                        $('.friend-list > ul').append(result);
+                        // 每次数据加载完，必须重置
+                        me.resetload();
+                    },
+                    error: function(xhr, type){
+                        alert('Ajax error!');
+                        // 即使加载出错，也得重置
+                        me.resetload();
+                    }
+                });
+            },
+            threshold : 50
+        });
+    });
+</script>
+
+</body>
+</html>

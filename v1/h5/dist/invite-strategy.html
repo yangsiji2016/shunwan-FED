@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>邀请攻略</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #fff;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+        }
+    </style>
+</head>
+<body>
+<!--邀请攻略详情列表-->
+<div class="strategy-details">
+    <dl>
+        <dt>QQ/微信群</dt>
+        <dd>您可以通过群搜索功能，搜索各类游戏群，并申请加入群，加入群后千万不要直接复制推广链接或发二维码到群里，要单独发给群里的每个成员（管理员除外），这样可以避免管理员踢出群</dd>
+    </dl>
+    <dl>
+        <dt>新浪微博</dt>
+        <dd>一定要自己描述顺玩游戏的作用和好处，发到新浪微博，QQ空间,微信朋友圈里面，当然附带一些相关截图，这样可以大大提高你的邀请几率</dd>
+    </dl>
+    <dl>
+        <dt>应用宝</dt>
+        <dd>您可以到各大软件市场的热门游戏下面评论：需要手游折扣的加我QQ**********，需要手游礼包的加我QQ************等，加你好友后发送推广链接给他，附带一些截图页面给他，可以增加你邀请的成功率。</dd>
+    </dl>
+    <dl>
+        <dt>今日头条</dt>
+        <dd>准备好你的推广语和推广链接，二维码，在看微博、新闻等时候，随手评论一条，或许会有意想不到的收获呢，特别是热门咨询，每天上万人的浏览，当然不能太明显的广告，很容易被删除。</dd>
+    </dl>
+    <dl>
+        <dt>微信朋友圈</dt>
+        <dd>一定要自己描述顺玩游戏的作用和好处，发到新浪微博，QQ空间,微信朋友圈里面，当然附带一些相关截图，这样可以大大提高你的邀请几率</dd>
+    </dl>
+    <dl>
+        <dt>QQ空间</dt>
+        <dd>一定要自己描述顺玩游戏的作用和好处，发到新浪微博，QQ空间,微信朋友圈里面，当然附带一些相关截图，这样可以大大提高你的邀请几率</dd>
+    </dl>
+</div>
+
+
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+</body>
+</html>

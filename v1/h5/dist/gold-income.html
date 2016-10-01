@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>金币收益</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #fff;
+            padding-bottom: .9rem;
+            padding-top: .28rem;
+        }
+    </style>
+</head>
+<body>
+<!--选项卡-->
+<div class="tab-btn">
+    <p class="p1 fl active">邀请奖励</p>
+    <p class="p2 fl">收益列表</p>
+</div>
+
+
+<div class="list-change">
+    <!--邀请奖励列表-->
+    <div class="reward-list">
+        <table>
+            <tr>
+                <td>时间</td>
+                <td>好友</td>
+                <td>类型</td>
+                <td>金额</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>虾米</td>
+                <td>成功注册</td>
+                <td>+100</td>
+            </tr>
+        </table>
+    </div>
+
+    <!--收益列表-->
+    <div class="gold-income-list hide">
+        <table>
+            <tr>
+                <td>时间</td>
+                <td>标签</td>
+                <td>类型</td>
+                <td>金额</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+            <tr>
+                <td>07-14 12:00</td>
+                <td>每日签到</td>
+                <td>任务奖励</td>
+                <td>+100</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--无邀请好友时显示-->
+<div class="no-friend hide">
+    <table>
+        <tr style="border-bottom: 1px solid #dedede">
+            <td>时间</td>
+            <td>好友</td>
+            <td>类型</td>
+            <td>金额</td>
+        </tr>
+    </table>
+    <!--无好友提示-->
+    <div class="no-friend-tip">
+        <img src="img/icon/no-friend-ico.png" alt="">
+        <p>亲您一个好友都未邀请，收益为0哦</p>
+        <a href="#">邀请好友</a>
+    </div>
+</div>
+
+
+
+
+
+
+<!--JS插件部分-->
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<link rel="stylesheet" href="css/dropload.css">
+<script src="js/dropload.min.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+<!--js插件部分结束-->
+
+<!--邀请奖励页ajax请求-->
+<script>
+    $.ajax({
+        type: 'GET',
+        url: 'json/friend.json',
+        dataType: 'json',
+        cache: 'false',
+        success: function (data) {
+            console.log(data.lists.length);
+            if (data.lists.length > 0) {
+                var result = '';
+                for (var i = 0; i < data.lists.length; i++) {
+                    result += '<tr>'
+                            + '<td>' + data.lists[i].time + '</td>'
+                            + '<td>' + data.lists[i].friend + '</td>'
+                            + '<td>' + data.lists[i].type + '</td>'
+                            + '<td>' + data.lists[i].money + '</td>'
+                            + '</tr>';
+                }
+                //载入数据覆盖
+                $('.reward-list > table').html(result);
+            } else {
+                $('.reward-list').html('');
+                $('.no-friend').show();
+            }
+        }
+    })
+</script>
+
+<!--收益列表页ajax请求-->
+<script>
+    $.ajax({
+        type: 'GET',
+        url: 'json/update2.json',
+        dataType: 'json',
+        cache: 'false',
+        success: function (data) {
+            console.log(data.lists.length);
+            if (data.lists.length > 0) {
+                var result = '';
+                for (var i = 0; i < data.lists.length; i++) {
+                    result += '<tr>'
+                            + '<td>' + data.lists[i].time + '</td>'
+                            + '<td>' + data.lists[i].label + '</td>'
+                            + '<td>' + data.lists[i].type + '</td>'
+                            + '<td>' + data.lists[i].money + '</td>'
+                            + '</tr>';
+                }
+                //载入数据覆盖
+                $('.gold-income-list > table').html(result);
+            } else {
+                var clearText = '';
+                $('.gold-income-list').html(clearText);
+            }
+        }
+    })
+</script>
+
+<!--选项卡切换-->
+<script>
+    Zepto(function ($) {
+        $('.tab-btn > p').click(function () {
+            var i = $(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            $('.list-change > div').eq(i).show().siblings().hide();
+        });
+    })
+</script>
+
+<!--下拉刷新&上拉加载-->
+<!--邀请奖励页-->
+<script>
+Zepto(function ($) {
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,pageEnd = 0;
+
+    // dropload
+    $('.reward-list').dropload({
+        scrollArea : window,
+        domUp : {
+            domClass   : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+            domUpdate  : '<div class="dropload-update">释放更新</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+        },
+        domDown : {
+            domClass   : 'dropload-down',
+            domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+            domNoData  : '<div class="dropload-noData">我是有底线的</div>'
+        },
+        /*loadUpFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'json/update.json',
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    console.log(data.lists.length);
+                    if (data.lists.length > 0) {
+                        var result = '';
+                        for(var i = 0; i < data.lists.length; i++){
+                            result +=   '<tr>'
+                                    +'<td>'+data.lists[i].time+'</td>'
+                                    +'<td>'+data.lists[i].friend+'</td>'
+                                    +'<td>'+data.lists[i].type+'</td>'
+                                    +'<td>'+data.lists[i].money+'</td>'
+                                    +'</tr>';
+                        }
+                        //载入数据覆盖
+                        $('.reward-list > table').html(result);
+                    } else {
+                        var clearText = '';
+                        $('.reward-list').html(clearText);
+                    }
+
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },*/
+        loadDownFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'json/more.json',
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    var result = '';
+                    counter++;
+                    pageEnd = num * counter;
+                    pageStart = pageEnd - num;
+
+                    for(var i = pageStart; i < pageEnd; i++){
+                        result +=   '<tr>'
+                                +'<td>'+data.lists[i].time+'</td>'
+                                +'<td>'+data.lists[i].friend+'</td>'
+                                +'<td>'+data.lists[i].type+'</td>'
+                                +'<td>'+data.lists[i].money+'</td>'
+                                +'</tr>';
+                        if((i + 1) >= data.lists.length){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
+                    }
+                    //载入数据添加到后面
+                    $('.reward-list > table').append(result);
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },
+        threshold : 50
+    });
+})
+
+</script>
+<!--收益列表页-->
+<script>
+Zepto(function ($) {
+    var counter = 0;
+    // 每页展示4个
+    var num = 4;
+    var pageStart = 0,pageEnd = 0;
+
+    // dropload
+    $('.gold-income-list').dropload({
+        scrollArea : window,
+        domUp : {
+            domClass   : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh">下拉刷新</div>',
+            domUpdate  : '<div class="dropload-update">释放更新</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+        },
+        domDown : {
+            domClass   : 'dropload-down',
+            domRefresh : '<div class="dropload-refresh">上拉加载更多</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+            domNoData  : '<div class="dropload-noData">我是有底线的</div>'
+        },
+        /*loadUpFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'json/update2.json',
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    var result = '';
+                    for(var i = 0; i < data.lists.length; i++){
+                        result +=   '<tr>'
+                                +'<td>'+data.lists[i].time+'</td>'
+                                +'<td>'+data.lists[i].label+'</td>'
+                                +'<td>'+data.lists[i].type+'</td>'
+                                +'<td>'+data.lists[i].money+'</td>'
+                                +'</tr>';
+                    }
+                    //载入数据覆盖
+                    $('.gold-income-list > table').html(result);
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },*/
+        loadDownFn : function(me){
+            $.ajax({
+                type: 'GET',
+                url: 'json/more2.json',
+                dataType: 'json',
+                cache: 'false',
+                success: function(data){
+                    var result = '';
+                    counter++;
+                    pageEnd = num * counter;
+                    pageStart = pageEnd - num;
+
+                    for(var i = pageStart; i < pageEnd; i++){
+                        result +=   '<tr>'
+                                +'<td>'+data.lists[i].time+'</td>'
+                                +'<td>'+data.lists[i].label+'</td>'
+                                +'<td>'+data.lists[i].type+'</td>'
+                                +'<td>'+data.lists[i].money+'</td>'
+                                +'</tr>';
+                        if((i + 1) >= data.lists.length){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                            break;
+                        }
+                    }
+                    //载入数据添加到后面
+                    $('.gold-income-list > table').append(result);
+                    // 每次数据加载完，必须重置
+                    me.resetload();
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!');
+                    // 即使加载出错，也得重置
+                    me.resetload();
+                }
+            });
+        },
+        threshold : 50
+    });
+})
+</script>
+
+</body>
+</html>

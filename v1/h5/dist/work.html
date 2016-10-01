@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>任务中心</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #fff;
+            padding-top: .4rem;
+            padding-bottom: .5rem;
+        }
+    </style>
+</head>
+<body>
+<!--新手任务列表-->
+<div class="newbie-task clearfix">
+    <ul>
+        <h2>新手任务</h2>
+        <li>
+            <div class="left-task-info fl">
+                <p class="p1">1.完善用户昵称</p>
+                <p class="p2">完成可获得奖励<span>5金币</span></p>
+            </div>
+            <a href="javascript:completeUsername();" class="right-task-link fr">现在就去</a>
+        </li>
+        <li>
+            <div class="left-task-info fl">
+                <p class="p1">2.上传个人头像</p>
+                <p class="p2">完成可获得奖励<span>5金币</span></p>
+            </div>
+            <a href="javascript:uploadAvatar();" class="right-task-link fr">现在就去</a>
+        </li>
+        <li>
+            <div class="left-task-info fl">
+                <p class="p1">3.设置登录密码</p>
+                <p class="p2">完成可获得奖励<span>5金币</span></p>
+            </div>
+            <a href="javascript:setPassword();" class="right-task-link fr">现在就去</a>
+        </li>
+        <li>
+            <div class="left-task-info fl">
+                <p class="p1">4.首次下载任意游戏</p>
+                <p class="p2">完成可获得奖励<span>5金币</span></p>
+            </div>
+            <a href="javascript:downloadGame();" class="right-task-completed fr">已完成</a>
+        </li>
+        <li>
+            <div class="left-task-info fl">
+                <p class="p1">5.首次平台充值</p>
+                <p class="p2">完成可获得奖励<span>5金币</span></p>
+            </div>
+            <a href="javascript:firstCharge();" class="right-task-completed fr">已完成</a>
+        </li>
+    </ul>
+</div>
+
+<!--每日任务-->
+<div class="daily-task">
+    <h2 style="border: none">每日任务</h2>
+    <table>
+        <tr>
+            <td>行为</td>
+            <td>奖励金币</td>
+            <td>描述</td>
+        </tr>
+        <tr>
+            <td>每日签到</td>
+            <td>+2</td>
+            <td>每日限1次</td>
+        </tr>
+        <tr>
+            <td>领取礼包</td>
+            <td>+50</td>
+            <td>连续签到一周，<br>有机会领取一次</td>
+        </tr>
+        <tr>
+            <td>邀请好友</td>
+            <td>+10</td>
+            <td>每日限10次</td>
+        </tr>
+        <tr>
+            <td>分享平台</td>
+            <td>+5</td>
+            <td>每日限10次</td>
+        </tr>
+        <tr>
+            <td>分享游戏</td>
+            <td>+3</td>
+            <td>每日限10次</td>
+        </tr>
+    </table>
+</div>
+
+
+
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+
+<script>
+    function completeUsername() {
+        window.androidjs.completeUsername();
+    }
+
+    function uploadAvatar() {
+        window.androidjs.uploadAvatar();
+    }
+
+    function setPassword() {
+        window.androidjs.setPassword();
+    }
+
+    function downloadGame() {
+        window.androidjs.downloadGame();
+    }
+
+    function firstCharge() {
+        window.androidjs.firstCharge();
+    }
+</script>
+
+</body>
+</html>

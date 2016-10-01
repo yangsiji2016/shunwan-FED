@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>常见问题</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<article class="faq">
+    <section>
+        <h6 class="faq-title">如何用顺玩游戏赚钱？<i></i></h6>
+        <p class="hide">1 新用户注册，就可获得5.99元通用首充卡，可用于平台所有游戏充值；</br>
+            2 豪华游戏礼包送不停；</br>
+            3 邀请好友玩游戏或充值，奖励相应平台币，邀请越多奖励越多，好友充值越多，收益越多。
+        </p>
+    </section>
+    <section>
+        <h6 class="faq-title">什么是卡劵？<i></i></h6>
+        <p class="hide">卡劵包括首充卡和优惠券，与现金等值。首充卡，只能限于游戏的第一次消费时使用；优惠劵不可叠加使用，只能单次使用。卡劵分为平台通用的和仅适用于某游戏的，平台通用的卡卷可在平台上所有的游戏进行消费，某游戏的卡卷只能在此游戏上进行消费。</p>
+    </section>
+    <section>
+        <h6 class="faq-title">如何获得卡劵？<i></i></h6>
+        <p class="hide">1 新用户注册，便可以获取一张首充卡；</br>
+            2 连续签到7天，便有机会获得一张卡劵；</br>
+            3 金币商城推出后，可用金币直接兑换卡劵</br>
+            4 完成某项活动的特定的任务，便有机会获得卡劵。
+        </p>
+    </section>
+    <section>
+        <h6 class="faq-title">卡劵怎么使用？ <i></i></h6>
+        <p class="hide">每张卡劵只能使用一次，不设余额等机制，在某游戏消费时，系统会智能推荐此游戏当前可用的卡劵，可自由选择使用某张卡劵，或者是否使用</p>
+    </section>
+    <section>
+        <h6 class="faq-title">平台币怎么获取？<i></i></h6>
+        <p class="hide">不论在平台中进行现金充值，还是在游戏（标有返利）中现金消费，都会返平台币，并且100%返利，你的好友充值也会返利，成为会长后返利不受限制，好友们充的越多，返的越多，在推出金币商城后，可通过金币兑换平台币。</p>
+    </section>
+    <section>
+        <h6 class="faq-title">平台币怎么使用？<i></i></h6>
+        <p class="hide">平台币与人民币是1:1对应关系，在游戏中进行消费时，1平台币相当于1元人民币进行使用，在游戏中进行支付时候，可以选择是否使用平台币进行支付，某些游戏可能需要交一定的手续费。</p>
+    </section>
+    <section>
+        <h6 class="faq-title">金币怎么获取与使用？<i></i></h6>
+        <p class="hide">金币可通过完成平台指定的任务进行获取，如邀请好友，分享游戏等等，金币可用于购买游戏的豪华礼包和高额首充卡，还有机会兑换平台币。</p>
+    </section>
+</article>
+
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+
+
+<script>
+    Zepto(function () {
+        $('.faq-title').click(function () {
+            $(this).siblings().toggle();
+            $(this).children('i').toggleClass('rotate');
+        });
+    })
+</script>
+</body>
+</html>

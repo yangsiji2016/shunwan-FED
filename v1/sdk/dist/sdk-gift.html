@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>SDK礼包</title>
+    <!--视口判断-->
+    <script type="text/javascript">
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+            //判断横竖屏
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth; /*> 640 ? 640 : docEl.clientWidth; //浏览器最大视口为640，方便pc端查看*/
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = clientWidth / 6.4 + 'px';
+                    };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);//针对firefox
+        })(document, window)
+    </script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <style>
+        body{
+            background-color: #efeff4;
+        }
+    </style>
+</head>
+<body>
+<!--礼包列表-->
+<div>
+    <div class="gift-list2">
+        <ul>
+            <li class="gift1">
+                <h2>《天子传奇》建党礼包</h2>
+                <p class="p1">刷新卷轴*3、免战牌*1、刷新金牌*20</p>
+                <p class="p2">使用期限至：2016-09-30</p>
+                <p class="p3"><span class="copy">FSXLN5D24XA</span>（礼包码）</p>
+                <a href="javascript:" class="fr copy-btn">复制</a>
+            </li>
+            <li class="gift2">
+                <h2>《天子传奇》建党礼包</h2>
+                <p class="p1">刷新卷轴*3、免战牌*1、刷新金牌*20</p>
+                <p class="p2">使用期限至：2016-09-30</p>
+                <p class="p3"><span class="copy">FSXLN5D24XB</span>（礼包码）</p>
+                <a href="javascript:" class="fr copy-btn">复制</a>
+            </li>
+            <li class="gift1">
+                <h2>《天子传奇》建党礼包</h2>
+                <p class="p1">刷新卷轴*3、免战牌*1、刷新金牌*20</p>
+                <p class="p2">使用期限至：2016-09-30</p>
+                <p class="p3"><span class="copy">FSXLN5D24XC</span>（礼包码）</p>
+                <a href="javascript:" class="fr copy-btn">复制</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--无礼包状态-->
+<div class="gift-no hide">
+    <p>亲，没有领到礼包，赶快到游戏平台领取礼包，享受酣畅淋漓的战斗吧！</p>
+    <a class="app-link-btn" href="javascript:openShunwan();">打开顺玩</a>
+</div>
+
+<script src="js/zepto.js"></script>
+<!--消除点击延迟的JS库-->
+<script src="js/fastclick.js"></script>
+<!--zepto的touch模块-->
+<script src="js/touch.js"></script>
+<!--初始化fastclick库-->
+<script>
+    Zepto(function ($) {
+        FastClick.attach(document.body);
+    })
+</script>
+
+<!--复制模块-->
+<script>
+    Zepto(function ($) {
+        $('.copy-btn').click(function () {
+            var copyVal = $(this).parent().find('span.copy').html();
+            var copyPopup = '礼包码<' + copyVal + '>已复制到手机的剪切板里,点击粘贴,便可以使用。'
+            window.sdk.copy(copyVal, copyPopup);
+        })
+
+        $('.copy-confirm').click(function () {
+            $(this).parent().hide();
+        })
+    })
+</script>
+
+<!--打开顺玩模块-->
+<script>
+    function openShunwan() {
+        window.sdk.openshunwan('com.shunwanyouxi', 'http://www.baidu.com');
+    }
+</script>
+
+<!--无礼包状态top距离设置-->
+<script>
+    Zepto(function ($) {
+        var _height = ($(window).height() - $('.gift-no').height())/2;
+        $('.gift-no').css('top', _height);
+    })
+</script>
+</body>
+</html>
